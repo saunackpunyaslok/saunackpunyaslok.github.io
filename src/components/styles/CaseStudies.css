@@ -1,0 +1,144 @@
+.cases-section {
+  width: 100%;
+  position: relative;
+  margin: auto;
+  padding: 80px 0 40px;
+}
+
+.cases-container {
+  margin: auto;
+}
+
+.cases-section h2 {
+  font-size: clamp(40px, 6vw, 90px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 48px;
+  line-height: 1.05;
+}
+
+.cases-section h2 span {
+  color: var(--accentColor);
+}
+
+.case-panel {
+  position: relative;
+  padding: 44px clamp(24px, 4vw, 56px);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: radial-gradient(
+      120% 140% at 85% 0%,
+      rgba(139, 124, 246, 0.08),
+      transparent 60%
+    ),
+    rgba(255, 255, 255, 0.015);
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+.case-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #fb7185,
+    #fbbf24,
+    #a3e635,
+    #2dd4bf,
+    #60a5fa,
+    #8b7cf6
+  );
+}
+
+.case-label {
+  display: inline-block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--accentColor);
+  font-weight: 500;
+}
+
+.case-org {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #9fb3c8;
+  font-weight: 300;
+}
+
+.case-panel h3 {
+  margin: 18px 0 0;
+  font-size: clamp(26px, 3.4vw, 46px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: #eae5ec;
+  max-width: 900px;
+}
+
+.case-sub {
+  margin: 14px 0 0;
+  font-size: clamp(14px, 1.3vw, 18px);
+  color: var(--accentColor);
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.case-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 50px;
+  margin: 34px 0;
+  padding: 28px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.case-stat span {
+  display: block;
+  font-size: clamp(32px, 3.4vw, 48px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accentColor);
+}
+
+.case-stat small {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  color: #9fb3c8;
+  max-width: 200px;
+}
+
+.case-body {
+  display: grid;
+  gap: 18px;
+  max-width: 920px;
+}
+
+.case-body p {
+  margin: 0;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.7;
+  color: #b8c4d0;
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 600px) {
+  .cases-section {
+    padding: 50px 0 20px;
+  }
+  .case-panel {
+    padding: 30px 22px;
+  }
+  .case-stats {
+    gap: 20px 30px;
+  }
+}

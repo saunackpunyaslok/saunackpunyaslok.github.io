@@ -1,0 +1,133 @@
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  place-items: center;
+  position: relative;
+  opacity: 1;
+  height: auto;
+  width: var(--cWidth);
+  margin: auto;
+}
+.about-me {
+  padding: 50px 0px;
+  padding-bottom: 0;
+  width: 500px;
+  max-width: calc(100% - 15px);
+}
+.about-photo {
+  width: 92px;
+  height: 92px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  border: 2px solid var(--accentColor);
+  box-shadow: 0 0 40px rgba(139, 124, 246, 0.25);
+  margin-bottom: 18px;
+  display: block;
+}
+@media only screen and (min-width: 1025px) {
+  .about-photo {
+    width: 104px;
+    height: 104px;
+    margin-bottom: 20px;
+  }
+}
+.about-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px 40px;
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(139, 124, 246, 0.18);
+}
+.about-stats .about-stat span {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--accentColor);
+}
+.about-stats .about-stat p {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  color: #9fb3c8;
+  margin: 6px 0 0;
+  max-width: 130px;
+}
+@media only screen and (min-width: 1025px) {
+  .about-stats .about-stat span {
+    font-size: 2vw;
+  }
+  .about-stats .about-stat p {
+    font-size: 0.8vw;
+    max-width: 9vw;
+  }
+}
+@media only screen and (min-width: 1950px) {
+  .about-stats .about-stat span {
+    font-size: 2.4rem;
+  }
+  .about-stats .about-stat p {
+    font-size: 0.95rem;
+    max-width: 170px;
+  }
+}
+.about-me h3 {
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  font-weight: 400;
+  color: var(--accentColor);
+}
+
+.about-me p {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0.3px;
+  margin: 0 0 14px;
+}
+
+@media only screen and (min-width: 600px) {
+  .about-section {
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .about-me {
+    width: 500px;
+    max-width: calc(100% - 70px);
+    transform: translateY(0%);
+  }
+  .about-section {
+    opacity: 1;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .about-section {
+    width: var(--cWidth);
+    justify-content: right;
+    max-width: 1920px;
+    height: var(--vh);
+    padding: 0px;
+    opacity: 1;
+  }
+  .about-me {
+    padding: 0px;
+    width: 50%;
+  }
+  .about-me p {
+    font-size: 1.15vw;
+    line-height: 1.7vw;
+    margin: 0 0 0.9em;
+  }
+}
+@media only screen and (min-width: 1950px) {
+  .about-me p {
+    font-size: 1.35rem;
+    line-height: 2rem;
+  }
+}

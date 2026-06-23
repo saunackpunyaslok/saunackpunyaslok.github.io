@@ -1,0 +1,68 @@
+.brands-section {
+  width: 100%;
+  position: relative;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.brands-head {
+  margin: auto auto 30px;
+}
+
+.brands-label {
+  display: inline-block;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--accentColor);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.brands-head h3 {
+  margin: 0;
+  font-size: clamp(20px, 2.4vw, 34px);
+  font-weight: 500;
+  color: #eae5ec;
+}
+
+.brands-marquee {
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.brand-chip {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 14px;
+  padding: 14px 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid color-mix(in srgb, var(--chip) 35%, transparent);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 500;
+  color: var(--chip);
+  white-space: nowrap;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.brand-chip:hover {
+  color: var(--chip);
+  border-color: var(--chip);
+  background: rgba(255, 255, 255, 0.05);
+  background: color-mix(in srgb, var(--chip) 13%, transparent);
+}

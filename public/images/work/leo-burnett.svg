@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0a0e17"/>
+      <stop offset="1" stop-color="#1a1430"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.18" r="0.95">
+      <stop stop-color="#818cf8" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#818cf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <text x="74" y="250" font-family="Geist, Arial, sans-serif" font-size="220" font-weight="800" fill="#ffffff" fill-opacity="0.05">04</text>
+  <rect x="80" y="300" width="64" height="6" rx="3" fill="#818cf8"/>
+  <text x="80" y="430" font-family="Geist, Arial, sans-serif" font-size="92" font-weight="700" fill="#eae5ec">Leo Burnett</text>
+  <text x="84" y="500" font-family="Geist, Arial, sans-serif" font-size="32" font-weight="500" fill="#a5b4fc" letter-spacing="3">PERFORMANCE &amp; PPC CAMPAIGNS</text>
+  <text x="84" y="560" font-family="Geist, Arial, sans-serif" font-size="26" font-weight="400" fill="#9fb3c8">Amazon Solimo, Lee &amp; Hoegaarden &#183; +15% conversions</text>
+</svg>

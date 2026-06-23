@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0a0e17"/>
+      <stop offset="1" stop-color="#0f2a1f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.18" r="0.95">
+      <stop stop-color="#34d399" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <text x="74" y="250" font-family="Geist, Arial, sans-serif" font-size="220" font-weight="800" fill="#ffffff" fill-opacity="0.05">05</text>
+  <rect x="80" y="300" width="64" height="6" rx="3" fill="#34d399"/>
+  <text x="80" y="430" font-family="Geist, Arial, sans-serif" font-size="92" font-weight="700" fill="#eae5ec">Everbloom Cafe</text>
+  <text x="84" y="500" font-family="Geist, Arial, sans-serif" font-size="32" font-weight="500" fill="#5eead4" letter-spacing="3">HRMS PRODUCT MANAGEMENT</text>
+  <text x="84" y="560" font-family="Geist, Arial, sans-serif" font-size="26" font-weight="400" fill="#9fb3c8">Recruitment, onboarding &amp; staff tracking &#183; 40% faster hiring</text>
+</svg>
