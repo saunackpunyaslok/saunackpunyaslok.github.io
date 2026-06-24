@@ -8,6 +8,10 @@ const About = () => {
           className="about-photo"
           src="/images/saunack.jpg"
           alt="Saunack Punyaslok"
+          loading="lazy"
+          decoding="async"
+          width="150"
+          height="150"
         />
         <h3 className="title">About Me</h3>
         <p className="para">

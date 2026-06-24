@@ -29,10 +29,11 @@ const Scene = () => {
 
       const renderer = new THREE.WebGLRenderer({
         alpha: true,
-        antialias: true,
+        antialias: window.innerWidth > 768,
+        powerPreference: "high-performance",
       });
       renderer.setSize(container.width, container.height);
-      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1;
       canvasDiv.current.appendChild(renderer.domElement);
@@ -106,8 +107,21 @@ const Scene = () => {
         landingDiv.addEventListener("touchstart", onTouchStart);
         landingDiv.addEventListener("touchend", onTouchEnd);
       }
+      // Pause the render loop when the character is off-screen or the tab is
+      // hidden — saves GPU/battery while scrolling the rest of the page (mobile especially).
+      let isVisible = true;
+      const visibilityObserver = new IntersectionObserver(
+        ([entry]) => {
+          isVisible = entry.isIntersecting;
+        },
+        { threshold: 0 }
+      );
+      visibilityObserver.observe(canvasDiv.current);
+
+      let rafId = 0;
       const animate = () => {
-        requestAnimationFrame(animate);
+        rafId = requestAnimationFrame(animate);
+        if (document.hidden || !isVisible) return;
         if (headBone) {
           handleHeadRotation(
             headBone,
@@ -119,7 +133,7 @@ const Scene = () => {
           );
           light.setPointLight(screenLight);
         }
-        const delta = clock.getDelta();
+        const delta = Math.min(clock.getDelta(), 0.1);
         if (mixer) {
           mixer.update(delta);
         }
@@ -128,6 +142,8 @@ const Scene = () => {
       animate();
       return () => {
         clearTimeout(debounce);
+        cancelAnimationFrame(rafId);
+        visibilityObserver.disconnect();
         scene.clear();
         renderer.dispose();
         window.removeEventListener("resize", () =>
