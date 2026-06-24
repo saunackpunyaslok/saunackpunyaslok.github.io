@@ -12,29 +12,39 @@ const Loading = ({ percent }: { percent: number }) => {
   // Show the loading screen for a fixed ~1.5s, then reveal the page regardless
   // of how far the 3D model has loaded (the character pops in when it's ready).
   useEffect(() => {
-    const t1 = setTimeout(() => {
+    let active = true;
+    const minDelay = new Promise<void>((r) => setTimeout(r, 1000));
+    // Don't reveal the page until the web font is actually loaded — otherwise it
+    // swaps in after the content paints and reflows every text block (the CLS
+    // regression). This triggers the load and resolves when Geist is ready.
+    const fontReady = document.fonts
+      ? document.fonts.load('1em "Geist"').catch(() => {})
+      : Promise.resolve();
+
+    Promise.all([minDelay, fontReady]).then(() => {
+      if (!active) return;
       setLoaded(true);
       setClicked(true);
-    }, 900);
-    const t2 = setTimeout(() => {
-      import("./utils/initialFX").then((module) => {
-        module.initialFX?.();
-      });
-      setIsLoading(false);
-    }, 1500);
+      setTimeout(() => {
+        if (!active) return;
+        import("./utils/initialFX").then((module) => {
+          module.initialFX?.();
+        });
+        setIsLoading(false);
+      }, 500);
+    });
+
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
+      active = false;
     };
   }, []);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;
-    const rect = target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    target.style.setProperty("--mouse-x", `${x}px`);
-    target.style.setProperty("--mouse-y", `${y}px`);
+    // Use the event offset instead of getBoundingClientRect() so the handler
+    // never reads layout (no forced reflow) on every mouse move.
+    target.style.setProperty("--mouse-x", `${e.nativeEvent.offsetX}px`);
+    target.style.setProperty("--mouse-y", `${e.nativeEvent.offsetY}px`);
   }
 
   return (
