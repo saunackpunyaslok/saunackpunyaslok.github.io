@@ -54,8 +54,9 @@ const Scene = () => {
       let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
 
+      let cancelled = false;
       loadCharacter().then((gltf) => {
-        if (gltf) {
+        if (gltf && !cancelled) {
           const animations = setAnimations(gltf);
           hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
           mixer = animations.mixer;
@@ -141,6 +142,7 @@ const Scene = () => {
       };
       animate();
       return () => {
+        cancelled = true;
         clearTimeout(debounce);
         cancelAnimationFrame(rafId);
         visibilityObserver.disconnect();

@@ -211,6 +211,7 @@
   letter-spacing: 0.5px;
   width: -moz-fit-content;
   width: fit-content;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 

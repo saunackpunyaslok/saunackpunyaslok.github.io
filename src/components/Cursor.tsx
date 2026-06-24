@@ -5,24 +5,34 @@ import gsap from "gsap";
 const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    let hover = false;
     const cursor = cursorRef.current!;
+    // Custom cursor only applies to a fine pointer (mouse) — skip on touch.
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    let hover = false;
     const mousePos = { x: 0, y: 0 };
     const cursorPos = { x: 0, y: 0 };
-    document.addEventListener("mousemove", (e) => {
+    // quickSetter writes the transform directly each frame with minimal overhead
+    // (no per-frame tween allocation), so the loop no longer churns the main thread.
+    const setX = gsap.quickSetter(cursor, "x", "px");
+    const setY = gsap.quickSetter(cursor, "y", "px");
+
+    const onMouseMove = (e: MouseEvent) => {
       mousePos.x = e.clientX;
       mousePos.y = e.clientY;
-    });
-    requestAnimationFrame(function loop() {
+    };
+    document.addEventListener("mousemove", onMouseMove);
+
+    let rafId = requestAnimationFrame(function loop() {
+      rafId = requestAnimationFrame(loop);
       if (!hover) {
-        const delay = 6;
-        cursorPos.x += (mousePos.x - cursorPos.x) / delay;
-        cursorPos.y += (mousePos.y - cursorPos.y) / delay;
-        gsap.to(cursor, { x: cursorPos.x, y: cursorPos.y, duration: 0.1 });
-        // cursor.style.transform = `translate(${cursorPos.x}px, ${cursorPos.y}px)`;
+        cursorPos.x += (mousePos.x - cursorPos.x) / 6;
+        cursorPos.y += (mousePos.y - cursorPos.y) / 6;
+        setX(cursorPos.x);
+        setY(cursorPos.y);
       }
-      requestAnimationFrame(loop);
     });
+
     document.querySelectorAll("[data-cursor]").forEach((item) => {
       const element = item as HTMLElement;
       element.addEventListener("mouseover", (e: MouseEvent) => {
@@ -46,6 +56,11 @@ const Cursor = () => {
         hover = false;
       });
     });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      document.removeEventListener("mousemove", onMouseMove);
+    };
   }, []);
 
   return <div className="cursor-main" ref={cursorRef}></div>;

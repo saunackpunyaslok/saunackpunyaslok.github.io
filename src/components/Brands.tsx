@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import Marquee from "react-fast-marquee";
+import CssMarquee from "./CssMarquee";
 import "./styles/Brands.css";
 
 const brands = [
@@ -24,7 +24,7 @@ const Brands = () => {
         <h3>Brands and accounts I've delivered for</h3>
       </div>
       <div className="brands-marquee">
-        <Marquee autoFill pauseOnHover speed={40} gradient={false}>
+        <CssMarquee durationSec={48}>
           {brands.map((brand) => (
             <span
               className="brand-chip"
@@ -34,7 +34,7 @@ const Brands = () => {
               {brand.name}
             </span>
           ))}
-        </Marquee>
+        </CssMarquee>
       </div>
     </div>
   );

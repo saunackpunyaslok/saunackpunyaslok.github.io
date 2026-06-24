@@ -1,0 +1,40 @@
+.cmarquee {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cmarquee-track {
+  display: flex;
+  flex-shrink: 0;
+  width: max-content;
+  animation-name: cmarquee-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.cmarquee:hover .cmarquee-track {
+  animation-play-state: paused;
+}
+
+.cmarquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@keyframes cmarquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cmarquee-track {
+    animation: none;
+  }
+}

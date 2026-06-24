@@ -2,36 +2,31 @@ import { useEffect, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
-import Marquee from "react-fast-marquee";
+import CssMarquee from "./CssMarquee";
 
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
   const [loaded, setLoaded] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  if (percent >= 100) {
-    setTimeout(() => {
-      setLoaded(true);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
-    }, 600);
-  }
-
+  // Show the loading screen for a fixed ~1.5s, then reveal the page regardless
+  // of how far the 3D model has loaded (the character pops in when it's ready).
   useEffect(() => {
-    import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
-        setClicked(true);
-        setTimeout(() => {
-          if (module.initialFX) {
-            module.initialFX();
-          }
-          setIsLoading(false);
-        }, 900);
-      }
-    });
-  }, [isLoaded]);
+    const t1 = setTimeout(() => {
+      setLoaded(true);
+      setClicked(true);
+    }, 900);
+    const t2 = setTimeout(() => {
+      import("./utils/initialFX").then((module) => {
+        module.initialFX?.();
+      });
+      setIsLoading(false);
+    }, 1500);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;
@@ -61,10 +56,12 @@ const Loading = ({ percent }: { percent: number }) => {
       </div>
       <div className="loading-screen">
         <div className="loading-marquee">
-          <Marquee>
-            <span>Saunack Punyaslok</span> <span>Saunack Punyaslok</span>
-            <span>Saunack Punyaslok</span> <span>Saunack Punyaslok</span>
-          </Marquee>
+          <CssMarquee durationSec={22}>
+            <span>Saunack Punyaslok</span>
+            <span>Saunack Punyaslok</span>
+            <span>Saunack Punyaslok</span>
+            <span>Saunack Punyaslok</span>
+          </CssMarquee>
         </div>
         <div
           className={`loading-wrap ${clicked && "loading-clicked"}`}

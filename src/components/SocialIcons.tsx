@@ -11,6 +11,8 @@ import HoverLinks from "./HoverLinks";
 
 const SocialIcons = () => {
   useEffect(() => {
+    // Magnetic-icon effect is a fine-pointer nicety — skip its per-frame loops on touch.
+    if (!window.matchMedia("(pointer: fine)").matches) return;
     const social = document.getElementById("social") as HTMLElement;
 
     social.querySelectorAll("span").forEach((item) => {

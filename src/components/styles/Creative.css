@@ -96,6 +96,7 @@
   border: 2px solid var(--accentColor);
   color: var(--accentColor);
   font-size: 20px;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   transition: background 0.3s ease, transform 0.3s ease;
 }
