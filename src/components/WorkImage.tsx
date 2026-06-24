@@ -41,8 +41,6 @@ const WorkImage = (props: Props) => {
           alt={props.alt}
           loading="lazy"
           decoding="async"
-          width="1200"
-          height="800"
         />
         {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
       </a>
